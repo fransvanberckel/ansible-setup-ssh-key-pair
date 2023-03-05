@@ -9,6 +9,10 @@ ansible
 
 /home/ansible
 ```
+With a dot at the end, git clone the repository into home directory.
+```
+~/ $ git clone https://github.com/fransvanberckel/ansible-setup-ssh-key-pair.git .
+```
 Initialize the environment
 ```
 ~/ $  cd bin
