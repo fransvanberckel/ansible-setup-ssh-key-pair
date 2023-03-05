@@ -20,7 +20,32 @@ Initialize the environment
 ~/bin/ $  ./init-environment.sh
 ~/bin/ $  ./edit-local-credentials.sh
 ~/bin/ $ cd
-~/ $ ls playbooks roles
+~/ $ tree playbooks roles
+
+playbooks
+├── configure_ssh_playbook
+│   ├── configure_ssh.yml
+│   └── runner.sh
+├── localhost_playbook
+│   ├── localhost.yml
+│   └── runner.sh
+└── ping_playbook
+    ├── ping.yml
+    └── runner.sh
+
+roles
+├── localhost_role
+│   └── tasks
+│       └── main.yml
+├── openssh_keypair_role
+│   └── tasks
+│       └── main.yml
+├── ping_role
+│   └── tasks
+│       └── main.yml
+└── setup_users_role
+    └── tasks
+        └── main.yml
 ```
 Setup the localhost environment
 ```
