@@ -12,4 +12,4 @@
   become: true
   become_method: sudo
   roles:
-    - { role: create_users_role }
+    - { role: setup_users_role }
