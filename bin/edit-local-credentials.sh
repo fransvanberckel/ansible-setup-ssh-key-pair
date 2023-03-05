@@ -7,10 +7,10 @@ create_credentials() {
 ---
 
 group_vars_linux_user: 'uid'
-group_vars_linux_password: ''
+group_vars_linux_password: 'changeme'
 group_vars_linux_become_user: 'root'
 group_vars_windows_user: 'user@ad.domain.name'
-group_vars_windows_password: ''
+group_vars_windows_password: 'changeme'
 group_vars_windows_become_user: 'System'
 EOF
 }
