@@ -43,7 +43,10 @@ roles
 ├── ping_role
 │   └── tasks
 │       └── main.yml
-└── setup_users_role
+├── setup_users_role
+│   └── tasks
+│       └── main.yml
+└── win_ping_role
     └── tasks
         └── main.yml
 ```
