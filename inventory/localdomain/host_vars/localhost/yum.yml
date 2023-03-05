@@ -1,0 +1,18 @@
+---
+yum_packages:
+  # required by Ansible
+  required:
+    - 'curl'
+    - 'wget'
+    - 'vim'
+    - 'nano'
+    - 'sshpass'
+    - 'dos2unix'
+    - 'zip'
+    - 'unzip'
+    - 'python3-kerberos'
+    - 'python3-winrm'
+    - 'python3-openssl'
+    - 'python3-bcrypt'
+  # packages to purge
+  absent:

@@ -1,0 +1,82 @@
+---
+
+- name: install Ansible dependencies
+  block:
+
+    - name: purge packages no longer needed
+      ansible.builtin.apt:
+        name: '{{ apt_packages.absent }}'
+        state: absent
+
+    - name: upgrade all apt packages
+      ansible.builtin.apt:
+        name: '*'
+        state: latest
+        update_cache: yes
+
+    - name: install apt packages
+      ansible.builtin.apt:
+        name: '{{ apt_packages.required }}'
+        state: latest
+        update_cache: no
+
+    - name: install python3-requests-credssp
+      pip:
+        name: 'pywinrm[credssp]'
+        executable: pip3
+
+  when: ansible_os_family == "Debian"
+
+- name: install Ansible dependencies
+  block:
+
+    - name: purge packages no longer needed
+      ansible.builtin.yum:
+        name: '{{ yum_packages.absent }}'
+        state: absent
+
+    - name: upgrade all yum packages
+      ansible.builtin.yum:
+        name: '*'
+        state: latest
+        update_cache: yes
+
+    - name: install yum packages
+      ansible.builtin.yum:
+        name: '{{ yum_packages.required }}'
+        state: latest
+        update_cache: no
+
+    - name: install python3-requests-credssp
+      pip:
+        name: 'pywinrm[credssp]'
+        executable: pip3
+
+  when: ansible_os_family == "Redhat" and ansible_distribution_major_version == "6" or ansible_distribution_major_version == "7"
+
+- name: install Ansible dependencies
+  block:
+
+    - name: purge packages no longer needed
+      ansible.builtin.dnf:
+        name: '{{ dnf_packages.absent }}'
+        state: absent
+
+    - name: upgrade all yum packages
+      ansible.builtin.dnf:
+        name: '*'
+        state: latest
+        update_cache: yes
+
+    - name: install yum packages
+      ansible.builtin.dnf:
+        name: '{{ dnf_packages.required }}'
+        state: latest
+        update_cache: no
+
+    - name: install python3-requests-credssp
+      pip:
+        name: 'pywinrm[credssp]'
+        executable: pip3
+
+  when: ansible_os_family == "Redhat" and ansible_distribution_major_version == "8" or ansible_distribution_major_version == "9"
