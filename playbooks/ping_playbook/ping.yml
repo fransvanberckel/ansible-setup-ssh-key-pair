@@ -4,3 +4,9 @@
   gather_facts: false
   roles:
     - { role: ping_role }
+
+- name:  ping (and pong) for Windows
+  hosts: 'vm_windows'
+  gather_facts: false
+  roles:
+    - { role: ping_role }
