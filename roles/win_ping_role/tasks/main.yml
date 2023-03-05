@@ -1,4 +1,4 @@
 ---
 
 - name: ping (and pong)
-  ansible.builtin.ping:
+  ansible.windows.win_ping:

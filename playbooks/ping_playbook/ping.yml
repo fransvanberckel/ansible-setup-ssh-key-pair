@@ -9,4 +9,4 @@
   hosts: 'vm_windows'
   gather_facts: false
   roles:
-    - { role: ping_role }
+    - { role: win_ping_role }
