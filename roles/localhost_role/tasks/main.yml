@@ -80,3 +80,8 @@
         executable: pip3
 
   when: ansible_os_family == "Redhat" and ansible_distribution_major_version == "8" or ansible_distribution_major_version == "9"
+
+- name: install ansible collections
+  community.general.ansible_galaxy_install:
+    type: collection
+    name: '{{ ansible_collections.required }}'

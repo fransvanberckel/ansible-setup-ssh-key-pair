@@ -1,0 +1,8 @@
+---
+ansible_collections:
+  # collections required by Ansible
+  required:
+    - 'community.crypto.openssh_keypair'
+    - 'community.general.sudoers'
+  # collections to purge
+  absent:
