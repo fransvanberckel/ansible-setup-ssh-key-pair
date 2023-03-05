@@ -1,12 +1,12 @@
 ---
 - name: create SSH directory
   ansible.builtin.file:
-    path: "~/.ssh"
+    path: "{{ ansible_env.HOME }}/.ssh"
     state: directory
 
 - name: generate SSH keypair
   community.crypto.openssh_keypair:
-    path: "~/.ssh/id_rsa"
+    path: "{{ ansible_env.HOME }}/.ssh/id_rsa"
     type: rsa
     size: 4096
     passphrase: "{{ item.passphrase }}"
