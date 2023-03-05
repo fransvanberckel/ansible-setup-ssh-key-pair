@@ -2,6 +2,7 @@
 - name: create SSH directory
   ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/.ssh"
+    mode: "0700"
     state: directory
 
 - name: generate SSH keypair
