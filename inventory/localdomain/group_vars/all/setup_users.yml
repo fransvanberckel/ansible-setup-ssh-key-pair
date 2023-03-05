@@ -1,0 +1,8 @@
+---
+group_vars_setup_users:
+  - name: "ansible"
+    groups:
+      - sshusers
+      - wheel
+    password: "changeme"
+    passphrase: "changeme"

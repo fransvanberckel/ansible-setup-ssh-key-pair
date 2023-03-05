@@ -1,0 +1,6 @@
+---
+- name:  ping (and pong) for Linux
+  hosts: 'vm_linux'
+  gather_facts: false
+  roles:
+    - { role: ping_role }

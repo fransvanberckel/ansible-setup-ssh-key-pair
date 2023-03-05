@@ -1,0 +1,15 @@
+---
+- name:  init openssh keypair
+  hosts: 'localhost'
+  connection: local
+  roles:
+    - { role: openssh_keypair_role  }
+
+- name:  create SSH users
+  hosts: 'vm_linux'
+  gather_facts: yes
+  strategy: free
+  become: true
+  become_method: sudo
+  roles:
+    - { role: create_users_role }

@@ -1,0 +1,25 @@
+---
+all:
+  children:
+    vm_linux:
+      children:
+        localdomain:
+          hosts:
+            localhost:
+        database:
+          hosts:
+            db-server:
+        application:
+          hosts:
+            web-server:
+    vm_windows:
+      children:
+        management:
+          hosts:
+            jump-server:
+    connector_linux:
+      children:
+        vm_linux:
+    connector_windows:
+      children:
+        vm_windows:

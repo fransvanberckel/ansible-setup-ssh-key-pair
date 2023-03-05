@@ -1,0 +1,31 @@
+---
+- name: get all groups
+  ansible.builtin.getent:
+    database: group
+    split: ':'
+
+- name: create users
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    groups: "{{ item.groups | intersect(ansible_facts.getent_group | list) }}"
+    state: "present"
+    password: "{{ item.password | password_hash('sha512') }}"
+    update_password: on_create
+    expires: -1
+    append: yes
+  with_items: "{{ group_vars_setup_users }}"
+
+- name: allow users to be sudo privileged
+  community.general.sudoers:
+    name: "{{ item.name }}"
+    state: present
+    user: "{{ item.name }}"
+    commands: ALL
+  with_items: "{{ group_vars_setup_users }}"
+
+- name: deploy SSH public key
+  ansible.posix.authorized_key:
+    user: "{{ item.name }}"
+    state: "present"
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+  with_items: "{{ group_vars_setup_users }}"

@@ -1,0 +1,18 @@
+---
+## This connector_windows is called by inventory
+
+# Using the winrm connection plugin
+ansible_connection: winrm
+become_method: runas
+
+# Options for ansible_winrm_transport: basic, ntlm, credssp, kerberos
+ansible_winrm_transport: credssp
+
+ansible_port: 5986
+ansible_winrm_scheme: https
+# Ignore self signed certificate validation
+ansible_winrm_server_cert_validation: ignore
+ansible_winrm_operation_timeout_sec: 10
+ansible_winrm_read_timeout_sec: 15
+# Message encryption over HTTP
+ansible_winrm_message_encryption: auto

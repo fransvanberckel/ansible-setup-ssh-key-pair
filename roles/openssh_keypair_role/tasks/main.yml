@@ -1,0 +1,17 @@
+---
+- name: create SSH directory
+  file:
+    path: "~/.ssh"
+    state: directory
+
+- name: generate SSH keypair
+  community.crypto.openssh_keypair:
+    path: "~/.ssh/id_rsa"
+    type: rsa
+    size: 4096
+    passphrase: "{{ item.passphrase }}"
+    private_key_format: "ssh"
+    backend: auto
+    state: present
+    force: no
+  with_items: "{{ group_vars_setup_users }}"
