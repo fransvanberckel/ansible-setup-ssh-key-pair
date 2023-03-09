@@ -5,18 +5,18 @@ all:
       children:
         localdomain:
           hosts:
-            localhost:
+            localhost.local:
         database:
           hosts:
-            db-server:
+            db-server.local:
         application:
           hosts:
-            web-server:
+            web-server.local:
     vm_windows:
       children:
         management:
           hosts:
-            jump-server:
+            jump-server.local:
     connector_linux:
       children:
         vm_linux:
