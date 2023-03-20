@@ -41,13 +41,23 @@ if command -v pip3 >/dev/null; then
 fi
 
 if [ ! -f ${HOME}/.ssh/ssh_agent_setup ]; then
-  echo "Creating .ssh_agent_setup file..."
+  echo "Creating ssh_agent_setup file..."
   cat <<EOF > ${HOME}/.ssh/ssh_agent_setup
 #!/bin/bash
+
 if [[ -z "\$SSH_AGENT_PID" || ! -e "/proc/\$SSH_AGENT_PID" ]]; then
-  eval "$(ssh-agent -s)" 
+  ssh-agent > "${HOME}/.ssh/ssh-agent-env"
+fi
+
+if [[ ! "${SSH_AUTH_SOCK}" ]]; then
+  eval "$(<${HOME}/.ssh/ssh-agent-env)"
+  if [ ! -S "${SSH_AUTH_SOCK}" ]; then
+    echo "Could not connect to ssh-agent socket at ${SSH_AUTH_SOCK}"
+    exit 1
+  fi
 fi
 EOF
+
 fi
 if [ ! grep -qxF "source ${HOME}/.ssh/ssh_agent_setup" "${HOME}/.bashrc" ]; then
   echo -e "\nsource ~/.ssh/ssh_agent_setup" >> "${HOME}/.bashrc"
