@@ -39,28 +39,3 @@ if command -v pip3 >/dev/null; then
   python3 -m pip install --upgrade -user pip
   python3 -m pip install --user --requirement $HOME/requirements.txt
 fi
-
-if [ ! -f ${HOME}/.ssh/ssh_agent_setup ]; then
-  echo "Creating ssh_agent_setup file..."
-  cat <<EOF > ${HOME}/.ssh/ssh_agent_setup
-#!/bin/bash
-
-if [[ -z "\$SSH_AGENT_PID" || ! -e "/proc/\$SSH_AGENT_PID" ]]; then
-  ssh-agent > "${HOME}/.ssh/ssh-agent-env"
-fi
-
-if [[ ! "${SSH_AUTH_SOCK}" ]]; then
-  eval "$(<${HOME}/.ssh/ssh-agent-env)"
-  if [ ! -S "${SSH_AUTH_SOCK}" ]; then
-    echo "Could not connect to ssh-agent socket at ${SSH_AUTH_SOCK}"
-    exit 1
-  fi
-fi
-EOF
-
-fi
-if [ ! grep -qxF "source ${HOME}/.ssh/ssh_agent_setup" "${HOME}/.bashrc" ]; then
-  echo -e "\nsource ~/.ssh/ssh_agent_setup" >> "${HOME}/.bashrc"
-fi
-
-source ${HOME}/.bashrc
