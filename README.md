@@ -59,7 +59,7 @@ Setup SSH key-pair
 ~/playbooks/configure_ssh_playbook/ $ cd
 ~/ $
 ```
-vars/*/credentials.yml: Switch to group_vars_linux_passphrase
+host_vars/*/credentials.yml: Switch to group_vars_linux_passphrase
 
 And run Ping playbook to verify
 ```
