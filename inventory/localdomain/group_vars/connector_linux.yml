@@ -1,4 +1,4 @@
 ---
 ## This connector_linux is called by inventory
 
-ansible_connection: ssh
+ansible_connection: paramiko
