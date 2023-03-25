@@ -50,10 +50,20 @@ roles
     └── tasks
         └── main.yml
 ```
-Setup the localhost environment
+Setup SSH key-pair
 ```
 ~/ $  cd playbooks/localhost_playbook
-~/playbooks/localhost_playbook/ $  ./runner.sh
-~/playbooks/localhost_playbook/ $  cd
+~/playbooks/localhost_playbook/ $ ./runner.sh
+~/playbooks/localhost_playbook/ $ cd ../configure_ssh_playbook
+~/playbooks/configure_ssh_playbook/ $ ./runner.sh
+~/playbooks/configure_ssh_playbook/ $ cd
+~/ $
+```
+Switch to host_vars/*/credentials.yml group_vars_linux_passphrase
+And run Ping playbook to verify
+```
+~/ $  cd playbooks/ping_playbook
+~/playbooks/ping_playbook/ $ ./runner.sh
+~/playbooks/ping_playbook/ $ cd
 ~/ $
 ```
