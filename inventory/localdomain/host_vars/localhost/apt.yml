@@ -14,5 +14,6 @@ apt_packages:
     - 'python3-winrm'
     - 'python3-openssl'
     - 'python3-bcrypt'
+    - 'python3-paramiko'
   # packages to purge
   absent:
